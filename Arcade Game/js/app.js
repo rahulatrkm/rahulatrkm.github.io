@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function() {
+var Enemy = function(x = 0, y = 60, speed = 500) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -8,6 +8,7 @@ var Enemy = function() {
     this.sprite = 'images/enemy-bug.png';
     this.x = x;
     this.y = y;
+    this.speed = speed;
 };
 
 // Update the enemy's position, required method for game
@@ -27,10 +28,9 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 class Player {
-    constructor (posX = 200, posY = 380, speed = 50) {
+    constructor (posX = 200, posY = 380) {
         this.posX = posX;
         this.posY = posY;
-        this.speed = speed;
         this.sprite = 'images/char-boy.png';
     }
 
@@ -50,8 +50,8 @@ class Player {
 
         // checking the winning condition
         if (this.posY < 0) {
-            this.posY = 200;
-            this.posX = 380;
+            this.posY = 380;
+            this.posX = 200;
         }
     }
 
@@ -61,16 +61,16 @@ class Player {
 
     handleInput(keyPress) {
         if (keyPress === 'left') {
-            this.posX -= this.speed + 50;
+            this.posX -= 100;
         }
         else if (keyPress === 'right') {
-            this.posX += this.speed + 50;
+            this.posX += 100;
         }
         else if (keyPress === 'up') {
-            this.posY -= this.speed + 33;
+            this.posY -= 83;
         }
         else if (keyPress === 'down') {
-            this.posY += this.speed + 33;
+            this.posY += 83;
         }
     }
 }
@@ -79,6 +79,13 @@ class Player {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 let allEnemies = [];
+// positions for enmies at different rows of stone
+const rows =[60, 140, 220];
+for (const row of rows) {
+    const speedOfEnemy = Math.floor(Math.random() * 500);
+    let enemy = new Enemy(0, row, speedOfEnemy);
+    allEnemies.push(enemy);
+}
 let player = new Player();
 
 // This listens for key presses and sends the keys to your
