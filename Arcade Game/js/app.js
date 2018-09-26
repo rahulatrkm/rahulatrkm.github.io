@@ -22,7 +22,16 @@ Enemy.prototype.update = function(dt) {
     // sending enemy again after exiting
     if (this.x > 600) {
         this.x = -50;
-        this.speed = Math.floor(Math.random() * 500);
+        this.speed = Math.floor(Math.random() * 1000);
+    }
+
+    // checking collisions
+    if (player.posX < this.x + 60 &&
+        player.posX + 37 > this.x &&
+        player.posY < this.y + 25 &&
+        30 + player.posY > this.y) {
+        player.posX = 200;
+        player.posY = 380;
     }
 };
 
@@ -56,7 +65,6 @@ class Player {
         }
 
         // checking the winning condition or collision
-        //let collision = (this.x < enemy.x + 60) && (this.x + 37 > enemy.x);
         if (this.posY < 0) {
             this.posY = 380;
             this.posX = 200;
@@ -91,7 +99,7 @@ let allEnemies = [];
 const rows =[60, 140, 220];
 
 for (const row of rows) {
-    const speedOfEnemy = Math.floor(Math.random() * 500);
+    const speedOfEnemy = 50 + Math.floor(Math.random() * 500);
     let enemy = new Enemy(0, row, speedOfEnemy);
     allEnemies.push(enemy);
 }
