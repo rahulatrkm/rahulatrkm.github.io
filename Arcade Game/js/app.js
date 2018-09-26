@@ -27,7 +27,7 @@ Enemy.prototype.render = function() {
 // This class requires an update(), render() and
 // a handleInput() method.
 class Player {
-    constructor (posX, posY, speed) {
+    constructor (posX = 200, posY = 380, speed = 50) {
         this.posX = posX;
         this.posY = posY;
         this.speed = speed;
@@ -61,7 +61,16 @@ class Player {
 
     handleInput(keyPress) {
         if (keyPress === 'left') {
-            this
+            this.posX -= this.speed + 50;
+        }
+        else if (keyPress === 'right') {
+            this.posX += this.speed + 50;
+        }
+        else if (keyPress === 'up') {
+            this.posY -= this.speed + 30;
+        }
+        else if (keyPress === 'down') {
+            this.posY += this.speed + 30;
         }
     }
 }
@@ -70,7 +79,7 @@ class Player {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 let allEnemies = [];
-
+let player = new Player();
 
 // This listens for key presses and sends the keys to your
 // Player.handleInput() method. You don't need to modify this.
