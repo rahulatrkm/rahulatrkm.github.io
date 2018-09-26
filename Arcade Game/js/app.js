@@ -67,10 +67,10 @@ class Player {
             this.posX += this.speed + 50;
         }
         else if (keyPress === 'up') {
-            this.posY -= this.speed + 30;
+            this.posY -= this.speed + 33;
         }
         else if (keyPress === 'down') {
-            this.posY += this.speed + 30;
+            this.posY += this.speed + 33;
         }
     }
 }
