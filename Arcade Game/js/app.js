@@ -56,8 +56,8 @@ class Player {
         }
 
         // checking the winning condition or collision
-        let collision = (this.x < enemy.x + 60) && (this.x + 37 > enemy.x);
-        if ((this.posY < 0) || collision) {
+        //let collision = (this.x < enemy.x + 60) && (this.x + 37 > enemy.x);
+        if (this.posY < 0) {
             this.posY = 380;
             this.posX = 200;
         }
