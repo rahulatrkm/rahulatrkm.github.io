@@ -97,11 +97,12 @@ class Player {
 let allEnemies = [];
 // positions for enemies at different rows of stone
 const rows =[60, 140, 220];
-
-for (const row of rows) {
-    const speedOfEnemy = 50 + Math.floor(Math.random() * 500);
-    let enemy = new Enemy(0, row, speedOfEnemy);
-    allEnemies.push(enemy);
+for (let i = 0; i < 2; i++) {
+    for (const row of rows) {
+        const speedOfEnemy = 50 + Math.floor(Math.random() * 500);
+        let enemy = new Enemy(0, row, speedOfEnemy);
+        allEnemies.push(enemy);
+    }
 }
 
 let player = new Player();
