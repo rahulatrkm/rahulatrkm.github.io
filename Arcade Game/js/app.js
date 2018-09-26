@@ -17,6 +17,13 @@ Enemy.prototype.update = function(dt) {
     // You should multiply any movement by the dt parameter
     // which will ensure the game runs at the same speed for
     // all computers.
+    this.x += this.speed * dt;
+
+    // sending enemy again after exiting
+    if (this.x > 600) {
+        this.x = -50;
+        this.speed = Math.floor(Math.random() * 500);
+    }
 };
 
 // Draw the enemy on the screen, required method for game
@@ -48,8 +55,9 @@ class Player {
             this.posX = 0;
         }
 
-        // checking the winning condition
-        if (this.posY < 0) {
+        // checking the winning condition or collision
+        let collision = (this.x < enemy.x + 60) && (this.x + 37 > enemy.x);
+        if ((this.posY < 0) || collision) {
             this.posY = 380;
             this.posX = 200;
         }
@@ -81,11 +89,14 @@ class Player {
 let allEnemies = [];
 // positions for enmies at different rows of stone
 const rows =[60, 140, 220];
-for (const row of rows) {
-    const speedOfEnemy = Math.floor(Math.random() * 500);
-    let enemy = new Enemy(0, row, speedOfEnemy);
-    allEnemies.push(enemy);
+while (true) {
+    for (const row of rows) {
+        const speedOfEnemy = Math.floor(Math.random() * 500);
+        let enemy = new Enemy(0, row, speedOfEnemy);
+        allEnemies.push(enemy);
+    }
 }
+
 let player = new Player();
 
 // This listens for key presses and sends the keys to your
