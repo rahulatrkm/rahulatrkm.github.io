@@ -1,5 +1,5 @@
 // Enemies our player must avoid
-var Enemy = function(x = 0, y = 60, speed = 500) {
+var Enemy = function(x = 0, y = 60, speed) {
     // Variables applied to each of our instances go here,
     // we've provided one for you to get started
 
@@ -87,14 +87,13 @@ class Player {
 // Place all enemy objects in an array called allEnemies
 // Place the player object in a variable called player
 let allEnemies = [];
-// positions for enmies at different rows of stone
+// positions for enemies at different rows of stone
 const rows =[60, 140, 220];
-while (true) {
-    for (const row of rows) {
-        const speedOfEnemy = Math.floor(Math.random() * 500);
-        let enemy = new Enemy(0, row, speedOfEnemy);
-        allEnemies.push(enemy);
-    }
+
+for (const row of rows) {
+    const speedOfEnemy = Math.floor(Math.random() * 500);
+    let enemy = new Enemy(0, row, speedOfEnemy);
+    allEnemies.push(enemy);
 }
 
 let player = new Player();
